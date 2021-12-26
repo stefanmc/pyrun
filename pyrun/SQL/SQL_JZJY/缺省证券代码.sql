@@ -1,0 +1,4 @@
+SELECT sec_code  
+FROM KS.B_SEC_CODE
+WHERE MARKET_CODE = '{}' AND SEC_TYPE = '{}' AND  substr(sec_status,9,6) != '100001' AND SEC_VARIETY = '{}' AND SEC_LEVEL = '{}' AND  SEC_SHORT_NAME !='新增证券' {}
+FETCH FIRST 1 ROWS ONLY WITH UR 

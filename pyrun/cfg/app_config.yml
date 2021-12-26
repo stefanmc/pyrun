@@ -1,0 +1,81 @@
+# 程序配置文件
+DATA_SOURCE:
+  MAIN_DB2: # 主库  用户名和密码需手动输入
+    ip: '10.46.1.31'
+    port: '51000'
+    protocol: TCPIP
+    database: KSDBS
+
+  BACK_DB2:  # 备库  用户名和密码需手动输入
+    ip: 0.0.0.0
+    port: '51000'
+    protocol: TCPIP
+    database: KSDBS
+
+  SPX: #网关配置
+    ip: 10.46.21.196
+    port: '17991'
+
+  DRTP: #DRTP配置
+    ip: 172.16.45.157
+    port: '3000'
+    func_no: '9980'
+    dest_no: '998'
+
+DETAIL:
+  trades: # 交易类
+    - spx_3
+    - spx_202
+    - spx_660
+    - spx_312
+    - spx_1101
+    - spx_340
+    - spx_1101
+    - spx_314
+    - spx_316
+    - spx_161
+
+#案例模式：1-增量(新加业务现按该模式运行,需执行的excel放在增量文件夹：increment_excel_cases)；
+#         2-全量(在增量案例稳定后可以将对应的excel移入全量文件夹：all_excel_cases)
+  case_mode: 2
+#测试环境：0-测试；1-非测试环境（仿真，全网）；主要区别在于：测试环境可以证券红冲蓝补
+  env: 0
+#交易系统模式：0-集中交易；1-融资融券；2-公募基金
+  sys_mode: 0
+#测试数据,客户号,优先使用该客户，如果案例中有配置客户，以案例中为准
+  buy_cust_no:
+  sell_cust_no:
+#执行模式：0-委托模式；1-查询模式 ,查询模式针对于新股新债接口查询，其他涉及委托业务请设置为0
+  exec_mode: 0
+#指定要执行的sheet可以是按业务:JJJY.*: 执行对应目录下JJJY打头的全部sheet；也可以是具体的sheet名字
+  exec_cases:
+    - 沪A
+    - 沪B
+    - 沪港
+    - 深A
+    - 深B
+    - 深港
+    - 股转A
+    - 股转B
+#委托来源,默认值,可在具体案例里赋值，但是得确保CUST_BASE_INFO中ENTRUST_AUTH包含对应的方式，参考数据字典类型1201
+  entrust_method: WSWT
+#默认值,可在具体案例里赋值，终端信息的体现
+  system_source: python-run
+#发送间隔(秒),防止测试过程中发送频率过快造成仿真环境压力负载过高，设置自定义时间间隔
+  send_interval: 0
+#登录网关
+  spx_login: 61
+  branch_code: 003
+  dest_branch_code: 003
+
+
+
+
+
+
+
+
+
+
+
+
